@@ -35,13 +35,20 @@ def load_profile():
     ip_address = st.experimental_get_query_params().get("client_ip", [None])[0]
 
     # Check if the user's IP address has a profile
-    if ip_address and ip_address in profiles:
-        profile = profiles[ip_address]
-        st.write(f"Welcome back, {profile['profile_name']}!")
-        st.write("You can load your profile here.")
-        st.write("Profile details:")
-        st.write(f"Profile Name: {profile['profile_name']}")
-        st.write(f"Configuration: {profile['configuration']}")
+    if ip_address:
+        try:
+            with open(f"config_{ip_address}.bin", "rb") as f:
+                bit_array = bitarray.bitarray()
+                bit_array.fromfile(f)
+                configuration = list(bit_array)
+                profile_name = profiles[ip_address]["profile_name"]
+                st.write(f"Welcome back, {profile_name}!")
+                st.write("You can load your profile here.")
+                st.write("Profile details:")
+                st.write(f"Profile Name: {profile_name}")
+                st.write(f"Configuration: {configuration}")
+        except FileNotFoundError:
+            st.write("You don't have a profile yet.")
 
     else:
         st.write("You don't have a profile yet.")
