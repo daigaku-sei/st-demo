@@ -39,6 +39,9 @@ def load_profile():
         profile = profiles[ip_address]
         st.write(f"Welcome back, {profile['profile_name']}!")
         st.write("You can load your profile here.")
+        st.write("Profile details:")
+        st.write(f"Profile Name: {profile['profile_name']}")
+        st.write(f"Configuration: {profile['configuration']}")
 
     else:
         st.write("You don't have a profile yet.")
