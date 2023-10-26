@@ -13,21 +13,29 @@ def main():
     st.write(f"Selected Theme: {theme}")
 
 def light_theme():
-    st.set_page_config(
-        page_title="Streamlit Theme Demo",
-        page_icon=":sunny:",
-        layout="wide",
-        initial_sidebar_state="expanded",
-        theme="light"
+    st.markdown(
+        """
+        <style>
+        body {
+            color: black;
+            background-color: white;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
     )
 
 def dark_theme():
-    st.set_page_config(
-        page_title="Streamlit Theme Demo",
-        page_icon=":crescent_moon:",
-        layout="wide",
-        initial_sidebar_state="expanded",
-        theme="dark"
+    st.markdown(
+        """
+        <style>
+        body {
+            color: white;
+            background-color: black;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
     )
 
 if __name__ == "__main__":
