@@ -25,6 +25,11 @@ def create_profile():
             bit_array = bitarray.bitarray(configuration)
             bit_array.tofile(f)
 
+        st.write("Profile created successfully!")
+        st.write("Profile details:")
+        st.write(f"Profile Name: {profile_name}")
+        st.write(f"Configuration: {configuration}")
+
 def load_profile():
     # Get the user's IP address
     ip_address = st.experimental_get_query_params().get("client_ip", [None])[0]
